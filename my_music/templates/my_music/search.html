@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="background-color:#212529">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск музыки</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://cdn.plyr.io/3.6.2/plyr.css'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+<body style="background-color:#212529; padding:3rem 0">
+<!-- partial:index.partial.html -->
+<div class="container">
+    <div class="column add-bottom">
+        <div id="mainwrap">
+            <div>
+                <form action="{% url 'main_page' %}">
+                    <button type="submit" style="color: #fff; background-color:#212529;border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+    border-style: solid;
+    border-width: 1px;
+    padding: 7px 9px 9px;
+width:20%">Вернуться на главную
+                    </button>
+                </form>
+            </div>
+
+            <div id="nowPlay">
+                <span id="npAction">Paused...</span><span id="npTitle"></span>
+            </div>
+            <div id="audiowrap">
+
+                <div id="audio0">
+                    <audio id="audio1" preload controls>Your browser does not support HTML5 Audio! 😢</audio>
+                </div>
+                <div>
+                    <form action="{% url 'add_music' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="number" placeholder="Music number:" value="01" required style="font-family: inherit;
+  width: 20%;
+  border: 0;
+  border-bottom: 2px solid #fff;
+  outline: 0;
+  font-size: 1.0rem;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;">
+
+                        <button type="submit" style="color: #fff; background-color:#212529;border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+    border-style: solid;
+    border-width: 1px;
+    padding: 7px 9px 9px;">Добавить
+                        </button>
+                    </form>
+                </div>
+
+
+                <div id="tracks">
+                    <a id="btnPrev">&larr;</a><a id="btnNext">&rarr;</a>
+                </div>
+            </div>
+            <div id="plwrap">
+                <ul id="plList"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="column add-bottom center">
+        <p>Music by <a href="#">Mazemusic</a></p>
+        <p>Download: <a href="#">zip</a> / <a
+                href="#">torrent</a></p>
+    </div>
+</div>
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/html5media/1.1.8/html5media.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/plyr/3.6.8/plyr.min.js'></script>
+<script src="{% static 'js/search.js' %}"></script>
+</body>
+</html>
